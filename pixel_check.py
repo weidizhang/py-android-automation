@@ -5,7 +5,9 @@ class Color:
         self._color = (red, green, blue)
 
     def __eq__(self, other: Color) -> bool:
-        return self._color == other._color
+        if isinstance(self, other.__class__):
+            return self._color == other._color
+        return False
 
 class PixelCheck:
     def find_matching_pixels(self, image: Image, color: Color) -> [(int, int)]:

@@ -5,7 +5,7 @@ import os
 
 class AndroidHandler:
     def tap_screen(self, x: int, y: int) -> None:
-        self._run_shell_command('input tap ' + x + ' ' + y)
+        self._run_shell_command('input tap ' + str(x) + ' ' + str(y))
 
     def get_screen(self) -> Image:
         screenshot_file_name = 'scrn.png'

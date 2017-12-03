@@ -1,7 +1,7 @@
 from pathlib import Path
 from PIL import Image
 
-import os
+import subprocess
 
 class AndroidHandler:
     def tap_screen(self, x: int, y: int) -> None:
@@ -24,4 +24,5 @@ class AndroidHandler:
         self._run_adb_command('shell ' + command)
 
     def _run_adb_command(self, command: str) -> None:
-        os.system('adb ' + command)
+        adb_process = subprocess.Popen('adb ' + command)
+        adb_process.wait()

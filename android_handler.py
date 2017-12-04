@@ -43,7 +43,7 @@ class AndroidHandler:
 
         screen_image = Image.open(screenshot_file_name)
         if self._screen_rotation != 0:
-            screen_image.rotate(self._screen_rotation)
+            screen_image = screen_image.rotate(self._screen_rotation, expand = True)
 
         return screen_image
 

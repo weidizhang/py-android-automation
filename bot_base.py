@@ -15,7 +15,7 @@ class BotBase(abc.ABC):
 
     def run(self) -> None:
         while True:
-            self.do_events()
+            self._do_events()
             self.wait(self._loop_sleep)
 
     def wait(self, seconds: float) -> None:
@@ -25,6 +25,10 @@ class BotBase(abc.ABC):
         self._loop_sleep = seconds
 
     @abc.abstractmethod
-    def do_events(self) -> None:
+    def _do_events(self) -> None:
         'To be implemented by an extended class'
         pass
+
+    def _log_message(self, message: str) -> None:
+        current_time = time.strftime('%c')
+        print('[' + current_time + '] ' + message)

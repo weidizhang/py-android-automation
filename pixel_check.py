@@ -26,7 +26,6 @@ class PixelCheck:
 
         return matched_coordinates
 
-
     def get_pixel_color_at_coordinate(self, image: Image, x: int, y: int) -> Color:
         pixel_access = image.load()
         r, g, b = pixel_access[(x, y)]

@@ -4,7 +4,7 @@ class Color:
     def __init__(self, red: int, green: int, blue: int):
         self._color = (red, green, blue)
 
-    def __eq__(self, other: Color) -> bool:
+    def __eq__(self, other) -> bool:
         if isinstance(self, other.__class__):
             return self._color == other._color
         return False

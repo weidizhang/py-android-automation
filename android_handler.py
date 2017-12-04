@@ -4,6 +4,11 @@ from PIL import Image
 import subprocess
 
 class AndroidHandler:
+    def __init__(self, screen_image_rotation: int = 0):
+        'screen_image_rotation is given in degrees'
+
+        self.set_screen_rotation(screen_image_rotation)
+
     def tap_screen(self, x: int, y: int) -> None:
         self.run_shell_command('input tap ' + str(x) + ' ' + str(y))
 
@@ -22,6 +27,9 @@ class AndroidHandler:
     def navigate_app_switcher(self) -> None:
         self.run_shell_command('input keyevent KEYCODE_APP_SWITCH')
 
+    def set_screen_rotation(self, degrees: int) -> None:
+        self._screen_rotation = degrees
+
     def get_screen(self) -> Image:
         screenshot_file_name = 'scrn.png'
         screenshot_file = Path(screenshot_file_name)
@@ -33,7 +41,11 @@ class AndroidHandler:
         self.run_adb_command('pull /sdcard/'+ screenshot_file_name)
         self.run_shell_command('rm /sdcard/' + screenshot_file_name)
 
-        return Image.open(screenshot_file_name)
+        screen_image = Image.open(screenshot_file_name)
+        if self._screen_rotation != 0:
+            screen_image.rotate(self._screen_rotation)
+
+        return screen_image
 
     def launch_app(self, package_name: str) -> None:
         self.run_shell_command('monkey -p ' + package_name + ' 1')

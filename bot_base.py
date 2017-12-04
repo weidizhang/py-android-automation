@@ -5,10 +5,10 @@ import abc
 import time
 
 class BotBase(abc.ABC):
-    def __init__(self, loop_sleep_time: float = 0.1):
+    def __init__(self, loop_sleep_time: float = 0.1, screen_image_rotation: int = 0):
         'loop_sleep_time is given in seconds'
 
-        self._android_handler = android_handler.AndroidHandler()
+        self._android_handler = android_handler.AndroidHandler(screen_image_rotation)
         self._pixel_check = pixel_check.PixelCheck()
 
         self.set_loop_sleep(loop_sleep_time)

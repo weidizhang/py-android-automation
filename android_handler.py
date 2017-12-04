@@ -13,6 +13,15 @@ class AndroidHandler:
     def hold_press_screen(self, x: int, y: int, duration_ms: int) -> None:
         self.swipe_screen(x, y, x, y, duration_ms)
 
+    def navigate_back(self) -> None:
+        self.run_shell_command('input keyevent KEYCODE_BACK')
+
+    def navigate_home(self) -> None:
+        self.run_shell_command('input keyevent KEYCODE_HOME')
+
+    def navigate_app_switcher(self) -> None:
+        self.run_shell_command('input keyevent KEYCODE_APP_SWITCH')
+
     def get_screen(self) -> Image:
         screenshot_file_name = 'scrn.png'
         screenshot_file = Path(screenshot_file_name)

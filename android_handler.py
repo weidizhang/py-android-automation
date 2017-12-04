@@ -7,6 +7,12 @@ class AndroidHandler:
     def tap_screen(self, x: int, y: int) -> None:
         self.run_shell_command('input tap ' + str(x) + ' ' + str(y))
 
+    def swipe_screen(self, x_initial: int, y_initial: int, x_final: int, y_final: int, duration_ms: int) -> None:
+        self.run_shell_command('input swipe ' + x_initial + ' ' + y_initial + ' ' + x_final + ' ' + y_final + ' ' + duration_ms)
+
+    def hold_press_screen(self, x: int, y: int, duration_ms: int) -> None:
+        self.swipe_screen(x, y, x, y, duration_ms)
+
     def get_screen(self) -> Image:
         screenshot_file_name = 'scrn.png'
         screenshot_file = Path(screenshot_file_name)

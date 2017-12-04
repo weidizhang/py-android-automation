@@ -28,6 +28,6 @@ class PixelCheck:
 
     def get_pixel_color_at_coordinate(self, image: Image, x: int, y: int) -> Color:
         pixel_access = image.load()
-        r, g, b = pixel_access[(x, y)]
+        r, g, b, a = pixel_access[(x, y)]
 
         return Color(r, g, b)
